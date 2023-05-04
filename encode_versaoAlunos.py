@@ -29,7 +29,7 @@ def main():
     print("Aguardando usuário")
 
     signal = signalMeu()
-    freqDeAmostragem = 44100
+    fs = freqDeAmostragem = 44100
 
     sd.default.samplerate = freqDeAmostragem #taxa de amostragem
     sd.default.channels = 2
@@ -49,15 +49,14 @@ def main():
     "9":[1477,852], "0":[1336,941]
     }
     T = duration
-    fs = freqDeAmostragem
 
     #deixe tudo como array
-    t   = np.linspace(-T/2,T/2,T*fs)
+    t   = np.linspace(0,T/2,T*fs)
     y = t
     #printe a mensagem para o usuario teclar um numero de 0 a 9.
     digit = int(input("Escolha um número de 0 a 9:"))
     #nao aceite outro valor de entrada.
-    while not 0 <= digit <=9:
+    while not 0 <= digit <= 9:
         print("Entrada inválida")
         digit = int(input("Escolha um número de 0 a 9:"))
 
@@ -69,7 +68,7 @@ def main():
     x = y1 + y2
 
     #printe o grafico no tempo do sinal a ser reproduzido
-
+    plt.axis([0, 1e-2, -2.1, 2.1])
     plt.plot(y,x)
     # reproduz o som
     print("Reproduzindo Tom referente ao símbolo : {}".format(digit))
