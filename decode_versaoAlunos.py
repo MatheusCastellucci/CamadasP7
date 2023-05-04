@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 """Show a text-mode spectrogram using live microphone data."""
-
 #Importe todas as bibliotecas
 import numpy as np
-from numpy.lib.nanfunctions import nancumprod
 import sounddevice as sd
 import matplotlib as plt
 import peakutils 
 from suaBibSignal import *
 import time as ZaWarudo
+
 #funcao para transformas intensidade acustica em dB
 def todB(s):
     sdB = 10*np.log10(s)
@@ -16,7 +15,6 @@ def todB(s):
 
 
 def main():
- 
     #declare um objeto da classe da sua biblioteca de apoio (cedida)    
     #declare uma variavel com a frequencia de amostragem, sendo 44100
     signal= signalMeu()

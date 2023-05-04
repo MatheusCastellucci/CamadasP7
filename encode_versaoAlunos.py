@@ -7,6 +7,14 @@ import sounddevice as sd
 import matplotlib.pyplot as plt
 
 #funções a serem utilizadas
+def generateSin(freq, time, fs):
+    n = time*fs #numero de pontos
+    x = np.linspace(0.0, time, n)  # eixo do tempo
+    s = np.sin(freq*x*2*np.pi)
+    plt.figure()
+    plt.plot(x,s)
+    return (x, s)
+    
 def signal_handler(signal, frame):
         print('You pressed Ctrl+C!')
         sys.exit(0)
@@ -56,8 +64,8 @@ def main():
     print("Gerando Tom referente ao símbolo : {}".format(digit))
     #construa o sunal a ser reproduzido. nao se esqueca de que é a soma das senoides
     valors = digits[str(digit)]
-    x1,y1 = signal.generateSin(valors[0],amplitude, duration, freqDeAmostragem)
-    x2,y2 = signal.generateSin(valors[1],amplitude, duration, freqDeAmostragem)
+    y1 = np.sin(2*np.pi*valors[0]*t)
+    y2 = np.sin(2*np.pi*valors[1]*t)    
     x = y1 + y2
 
     #printe o grafico no tempo do sinal a ser reproduzido
@@ -69,6 +77,7 @@ def main():
     print("Aguardando fim do audio")
     sd.play(tone, fs)
     sd.wait()
+    print("Fim da reprodução")
     # Exibe gráficos
     plt.title("Sinal no tempo")
     plt.xlabel("Tempo (s)")
