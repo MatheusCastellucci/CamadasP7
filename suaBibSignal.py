@@ -14,7 +14,9 @@ class signalMeu:
     def __init__(self):
         self.init = 0
 
+ 
     def calcFFT(self, signal, fs):
+        # https://docs.scipy.org/doc/scipy/reference/tutorial/fftpack.html
         N  = len(signal)
         W = window.hamming(N)
         T  = 1/fs

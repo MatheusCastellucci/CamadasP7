@@ -6,7 +6,7 @@ import sounddevice as sd
 import matplotlib as plt
 import peakutils 
 from suaBibSignal import *
-import time as ZaWarudo
+import time
 
 #funcao para transformas intensidade acustica em dB
 def todB(s):
@@ -17,7 +17,7 @@ def todB(s):
 def main():
     #declare um objeto da classe da sua biblioteca de apoio (cedida)    
     #declare uma variavel com a frequencia de amostragem, sendo 44100
-    signal= signalMeu()
+    signal = signalMeu()
     freqDeAmostragem = 44100
     #voce importou a bilioteca sounddevice como, por exemplo, sd. entao
     # os seguintes parametros devem ser setados:
@@ -27,10 +27,10 @@ def main():
     duration = 4 #tempo em segundos que ira aquisitar o sinal acustico captado pelo mic
 
 
-    # faca um printo na tela dizendo que a captacao comecará em n segundos. e entao 
+    # faca um print na tela dizendo que a captacao comecará em n segundos. e entao 
     #use um time.sleep para a espera
     print("Começa a gravar em 2 segundos")
-    #ZaWarudo.sleep(2)
+    time.sleep(duration)
     #faca um print informando que a gravacao foi inicializada
     print("Começou a gravação")
     #declare uma variavel "duracao" com a duracao em segundos da gravacao. poucos segundos ... 
@@ -43,11 +43,10 @@ def main():
     print(audio)
     #analise sua variavel "audio". pode ser um vetor com 1 ou 2 colunas, lista ...
     #grave uma variavel com apenas a parte que interessa (dados)
-    inicio = 0
-    fim = duracao
     numPontos = numAmostras
     # use a funcao linspace e crie o vetor tempo. Um instante correspondente a cada amostra!
-    t = np.linspace(inicio,fim,numPontos)
+    
+    t = np.linspace(0, duracao, numPontos)
     # plot do gravico  áudio vs tempo!
     plt.plot(t, audio)
     
